@@ -1,8 +1,8 @@
 {
   "name": "simple-react-router",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A Simple Router for React",
-  "repository": "https://github.com/deadlyicon/simple-react-router",
+  "repository": "https://github.com/drwicked/simple-react-router",
   "main": "build/index.js",
   "files": [
     "build/index.js",

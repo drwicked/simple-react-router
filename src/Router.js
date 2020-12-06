@@ -30,7 +30,7 @@ export default class SimpleReactRouter extends Component {
     this.router.unmount()
   }
 
-  componentWillReceiveProps(nextProps){
+  componentDidUpdate(nextProps){
     this.router.update(nextProps)
   }
 
