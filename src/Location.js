@@ -1,22 +1,28 @@
 import querystring from 'querystring'
 
+const searchToObject = (search) => querystring.parse((search || '').replace(/^\?/, ''))
+
+const objectToSearch = (object) => querystring.stringify(object)
+
 export default class Location {
-  constructor({pathname, query, search, hash}){
+  constructor({
+    pathname, query, search, hash,
+  }) {
     this.pathname = pathname
     this.query = typeof search === 'string'
       ? searchToObject(search)
       : query || {}
-    this.hash = hash === "" ? null : hash
+    this.hash = hash === '' ? null : hash
   }
 
-  toString(){
+  toString() {
     let href = this.pathname
-    let query = objectToSearch(this.query)
-    if (query) href += '?'+query
+    const query = objectToSearch(this.query)
+    if (query) href += `?${query}`
     return href
   }
 
-  update({pathname, query, hash}){
+  update({ pathname, query, hash }) {
     return new Location({
       pathname: pathname || this.pathname,
       query: query || this.query,
@@ -27,13 +33,4 @@ export default class Location {
   hrefFor(location) {
     return this.update(location).toString()
   }
-}
-
-
-const searchToObject = (search) => {
-  return querystring.parse((search || '').replace(/^\?/, ''))
-}
-
-const objectToSearch = (object) => {
-  return querystring.stringify(object)
 }
