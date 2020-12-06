@@ -14,12 +14,14 @@
     "test": "mocha test/.setup.js test/**/*-test.js",
     "build": "babel src -d build",
     "build:watch": "npm build -- --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src"
   },
   "author": "Jared Grippe <jared@deadlyicon.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -27,6 +29,14 @@
     "chai": "^4.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "jsdom": "^11.6.2",
     "mocha": "^5.0.1",
     "prop-types": "^15.6.0",
@@ -36,9 +46,44 @@
     "sinon": "^6.3.4",
     "sinon-chai": "^3.2.0"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "airbnb"
+    ],
+    "rules": {
+      "semi": 0,
+      "arrow-parens": 0,
+      "no-param-reassign": 1,
+      "react/jsx-props-no-spreading": 0,
+      "max-len": [
+        "error",
+        {
+          "code": 140,
+          "ignoreComments": true
+        }
+      ],
+      "no-confusing-arrow": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      },
+      "parser": "babel-eslint"
+    }
+  },
   "peerDependencies": {
-    "react": "^16.2.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0"
   },
   "dependencies": {
     "pathname-router": "0.0.5"
